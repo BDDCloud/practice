@@ -1,22 +1,20 @@
-var app = angular.module('Todo', ['ngResource'])
+var app = angular.module('Todo', [])
     .config(function($httpProvider){ delete $httpProvider.defaults.headers.common['X-Requested-With'];})
     .controller('TodoController',
-        function($scope, $resource) {
-        $scope.resource = $resource('http://localhost\\:8123/',
-            {},
-            {
-            'get': {
-                method: 'GET',
-                isArray: true //since your list property is an array
-            }}
-        );
-
+        function($scope, $http) {
 
         $scope.newTodo = "Learn angular";
 
+        $http({method: 'GET', url:'http://localhost:8123/'})
+            .success(function(data)
+            {
+                $scope.todos = data;
+            })
+            .error(function()
+            {
+                console.log("failed");
+            });
 
-
-        $scope.todos = $scope.resource.get();
 
         $scope.add = function(){
             $scope.todos.push( { description:$scope.newTodo, id: guid() })
