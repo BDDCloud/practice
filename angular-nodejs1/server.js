@@ -16,10 +16,10 @@ http.createServer(function(request, response) {
 
         response.write(JSON.stringify(todo));
         response.end();
-        todo.push({ description: "read javascript good parts", id: "2343-1238"});
+
     }
     else if(request.method.toLowerCase() == 'post')
     {
-
+        todo.push({ description: "read javascript good parts", id: "2343-1238"});
     }
 }).listen(8123);

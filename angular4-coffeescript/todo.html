@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html ng-app="TodoApp">
+<head>
+    <title>Todo</title>
+    <script src="angular.js"></script>
+    <script src="app.js"></script>
+    <script src="todo.js"></script>
+</head>
+<body>
+    <div ng-controller="TodoController">
+        <h1>Todo List</h1>
+        <span>Enter item:</span>
+        <input ng-model="newTodo"/>
+        <button ng-click="add()">Add</button>
+        <h4>Backlog:</h4>
+        <h5 ng-show="todos.length == 0" >Add a todo</h5>
+        <ol ng-show="todos.length > 0">
+            <li ng-repeat="todo in todos">{{todo.description}} <button ng-click="remove(todo.id)">Remove</button></li>
+        </ol>
+    </div>
+</body>
+</html>

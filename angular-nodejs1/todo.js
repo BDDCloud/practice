@@ -17,7 +17,8 @@ var app = angular.module('Todo', [])
 
 
         $scope.add = function(){
-            $scope.todos.push( { description:$scope.newTodo, id: guid() })
+            $http.post('http://localhost:8123', "{ description:'" + $scope.newTodo + "', id: '" + guid() + "' }")
+                .success(function() { $scope.todos.push( { description:$scope.newTodo, id: guid() });  });
         }
 
         $scope.remove = function(id) {
